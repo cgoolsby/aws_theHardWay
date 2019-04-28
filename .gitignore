@@ -1,0 +1,9 @@
+*.json
+encryption-config.yaml
+bothIPs.txt
+*.tar*
+*.terraform
+*.tfstate*
+*.csr
+*.pem
+*.kubeconfig
