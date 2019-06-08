@@ -120,5 +120,5 @@ for inst in `seq 3 5`; do # 3 4 5
 done
 sed -i .bak "s/127.0.0.1/${IPs[0]}/g" admin.kubeconfig
 kubectl get nodes --kubeconfig admin.kubeconfig
-kubectl create -f flannel.yaml --kubeconfig admin.kubeconfig
-kubectl create deployment nginx --image=nginx --kubeconfig admin.kubeconfig
+#kubectl create -f flannel.yaml --kubeconfig admin.kubeconfig
+#kubectl create deployment nginx --image=nginx --kubeconfig admin.kubeconfig

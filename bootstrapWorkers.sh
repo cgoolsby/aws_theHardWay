@@ -37,12 +37,15 @@ INTERNAL_IP1=`echo ${privateIPs[4]} | awk '{$1=$1;print}'`
 INTERNAL_IP2=`echo ${privateIPs[5]} | awk '{$1=$1;print}'`
 if [ "$INTERNAL_IP0" = "$INTERNAL_IP" ]; then
   WORKERNAME="worker-0"
+  j=0
 fi
 if [ "$INTERNAL_IP1" = "$INTERNAL_IP" ]; then
   WORKERNAME="worker-1"
+  j=1
 fi
 if [ "$INTERNAL_IP2" = "$INTERNAL_IP" ]; then
   WORKERNAME="worker-2"
+  j=2
 fi
 {
   sudo mv runsc-50c283b9f56bb7200938d9e207355f05f79f0d17 runsc
@@ -55,7 +58,7 @@ fi
 }
 
 #POD_CIDR ---
-POD_CIDR=10.200.0.0/16
+POD_CIDR=10.200.$j.0/24
 
 cat <<EOF | sudo tee /etc/cni/net.d/10-bridge.conf
 {
@@ -189,7 +192,7 @@ apiVersion: kubeproxy.config.k8s.io/v1alpha1
 clientConnection:
   kubeconfig: "/var/lib/kube-proxy/kubeconfig"
 mode: "iptables"
-clusterCIDR: "10.200.0.0/24"
+clusterCIDR: "10.200.0.0/16"
 EOF
 
 cat <<EOF | sudo tee /etc/systemd/system/kube-proxy.service

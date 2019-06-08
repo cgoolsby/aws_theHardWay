@@ -69,11 +69,11 @@ EOF
   sudo systemctl start etcd
 }
 
-#sudo ETCDCTL_API=3 etcdctl member list \
-#  --endpoints=https://127.0.0.1:2379 \
-#  --cacert=/etc/etcd/ca.pem \
-#  --cert=/etc/etcd/kubernetes.pem \
-#  --key=/etc/etcd/kubernetes-key.pem
+sudo ETCDCTL_API=3 etcdctl member list \
+  --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/etcd/ca.pem \
+  --cert=/etc/etcd/kubernetes.pem \
+  --key=/etc/etcd/kubernetes-key.pem
 
 echo $INTERNAL_IP
 echo "*******END ETCD********"

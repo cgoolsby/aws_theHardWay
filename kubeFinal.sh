@@ -26,5 +26,5 @@ cat > kubernetes-csr.json <<EOF
 }
 EOF
 echo $master
-cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname="${IPs[0]},${master}kubernetes.default,127.0.0.1" -profile=kubernetes kubernetes-csr.json | cfssljson -bare kubernetes
+cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname="${IPs[0]},${master}kubernetes.default,127.0.0.1,10.32.0.1" -profile=kubernetes kubernetes-csr.json | cfssljson -bare kubernetes
 }
