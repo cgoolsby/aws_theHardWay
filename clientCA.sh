@@ -28,11 +28,11 @@ for inst in `seq 3 5`; do
 }
 EOF
 
-EXTERNAL_IP="${IPs[3]},${IPs[4]},${IPs[5]}"
-#EXTERNAL_IP=${IPs[$inst]}
+#EXTERNAL_IP="${IPs[3]},${IPs[4]},${IPs[5]}"
+EXTERNAL_IP=${IPs[$inst]}
 
-INTERNAL_IP="${internal[3]},${internal[4]},${internal[5]}"
-#INTERNAL_IP=${internal[$inst]}
+#INTERNAL_IP="${internal[3]},${internal[4]},${internal[5]}"
+INTERNAL_IP=${internal[$inst]}
 
 echo $inst, $instance
 cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname="${instance},${EXTERNAL_IP},${INTERNAL_IP},10.32.0.1" -profile=kubernetes ${instance}-csr.json | cfssljson -bare ${instance}
